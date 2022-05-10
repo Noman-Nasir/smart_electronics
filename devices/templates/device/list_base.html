@@ -1,0 +1,75 @@
+{% extends "../base.html" %}
+
+{% block page_title %}
+    <title>{{ page_title }}</title>
+{% endblock %}
+
+
+{% block page_content %}
+
+    <div class="container w-50 mx-auto">
+        <p class="h1">Devices</p>
+    </div>
+
+    <br><br><br>
+    <div class="row align-items-start">
+        <div class="card-group">
+
+            {% for device in devices %}
+
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                    <div class="card h-100">
+
+                        <img src="{{ device.image.url }}" class="card-img-top img-fluid" alt="{{ device.name }}">
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ device.name }}</h5>
+                            <p class="card-text">{{ device.description }}</p>
+                            <p class="card-text"><small class="text-muted">{{ device.manufacturer }}</small></p>
+                        </div>
+
+                        <div class="card-footer">
+
+                            <small class="text-dark">{{ device.price }}$</small>
+                            <div class="float-end">
+
+                                <a class="float-end" href="{% url 'display-device' pk=device.id %}">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                </a>
+                                {% if user_profile.is_seller %}
+
+                                    <span class="float-end">&emsp;</span>
+                                    <a href="{% url 'delete-device' pk=device.id %}"><i style="color: red"
+                                                                                        class="bi bi-trash-fill"></i></a>
+                                    <span>&emsp;</span>
+                                    <a href="{% url 'update-device' pk=device.id %}"><i style="color: green"
+                                                                                        class="bi bi-pencil-fill"></i></a>
+                                {% else %}
+
+                                    <span class="float-end">&emsp;</span>
+                                    <form class="float-end" method="post" action="device/add-fav/{{ device.id }}">
+                                        {% csrf_token %}
+
+                                        <button>
+                                            {% if device.id in liked_devices_id %}
+                                                <i class="bi bi-heart-fill" style="color: red;"></i>
+                                            {% else %}
+                                                <i class="bi bi-heart-fill" style="color: black;"></i>
+                                            {% endif %}
+                                        </button>
+
+                                    </form>
+
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+{% endblock page_content %}

@@ -1,0 +1,26 @@
+{% extends '../base.html' %}
+
+{% block page_title %}
+    <title>Register</title>
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="container center pt-5">
+        <p class="h1">Register</p>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <table class="table no-border table-borderless">
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td><input class="btn btn-primary" type="submit" name="submit" value="Register"/></td>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+
+{% endblock page_content %}

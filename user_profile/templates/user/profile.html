@@ -1,0 +1,50 @@
+{% extends '../base.html' %}
+
+{% block page_title %}
+    <title>{{ user_profile.user.username | upper }} | Profile</title>
+{% endblock page_title %}
+
+{% block page_content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="card mx-auto my-5 border-0" style="width: 35rem;">
+
+                <img src="{{ user_profile.avatar.url }}" class="card-img-top"
+                     alt="{{ user_profile.user.get_full_name }}">
+
+                <div class="card-body mx-auto">
+
+                    <h5 class="card-title"><i class="bi bi-person-fill"></i> {{ user_profile.user.get_full_name }}</h5>
+                    <p class="card-text"><i class="bi bi-envelope-fill"></i> {{ user_profile.user.email }}</p>
+                    <p class="card-text"><i class="bi bi-calendar-date-fill"></i> {{ user_profile.date_of_birth }}</p>
+
+                    <p class="card-text">
+
+                        {% if user_profile.is_seller %}
+                            <a href="{% url 'added-device' %}">
+                                <i class="bi bi-suit-heart-fill" style="color: #2c3034">Added Items</i>
+                            </a>
+                            <br>
+                            <i class="bi bi-info-circle-fill"></i> Seller
+                        {% else %}
+                            <a href="{% url 'liked-device' %}">
+                                <i class="bi bi-suit-heart-fill" style="color: red">Liked Items</i>
+                            </a>
+                        {% endif %}
+
+                    </p>
+
+                    <p class="card-text">
+                        <a href="{% url 'logout' %}" class="btn btn-danger">
+                            <i class="bi bi-box-arrow-left"> </i>Log Out
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock page_content %}

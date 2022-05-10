@@ -1,0 +1,28 @@
+{% extends "../base.html" %}
+
+{% block page_title %}
+    <title>{{ page_title }}</title>
+{% endblock %}
+
+
+{% block page_content %}
+    <div class="container center pt-5">
+
+        <form method='post' enctype="multipart/form-data" action="/device/add">
+            {% csrf_token %}
+
+            <table class="table no-border table-borderless">
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td><input class="btn btn-primary" type="submit" name="submit" value="Upload"/></td>
+                </tr>
+
+                <input type="hidden" name="added_by" value="{{ user.id }}"/>
+            </table>
+
+        </form>
+
+    </div>
+
+{% endblock page_content %}

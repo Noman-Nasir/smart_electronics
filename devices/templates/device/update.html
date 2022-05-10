@@ -1,0 +1,25 @@
+{% extends "../base.html" %}
+
+{% block page_title %}
+    <title>Update Device</title>
+{% endblock %}
+
+
+{% block page_content %}
+
+    <div class="container  mx-auto w-50 h-50">
+        <form method='post' enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <table class="table no-border table-borderless">
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td><input class="btn btn-primary" type="submit" name="submit" value="Update"/></td>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+
+{% endblock page_content %}

@@ -1,0 +1,23 @@
+{% extends '../base.html' %}
+
+{% block page_title %}
+    <title>Notifications</title>
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="container center pt-5">
+        <h2>Notifications</h2>
+
+        <ul class="list-group">
+            {% for notification in notifications %}
+                {% if notification.read %}
+                    <li class="list-group-item">{{ notification.message | safe }}</li>
+                {% else %}
+                    <li class="list-group-item" style="color: red">{{ notification.message | safe }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock page_content %}

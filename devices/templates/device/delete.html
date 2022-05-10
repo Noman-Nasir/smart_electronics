@@ -1,0 +1,27 @@
+{% extends "../base.html" %}
+
+{% block page_title %}
+    <title>{{ 'Delete Device' }}</title>
+{% endblock %}
+
+
+{% block page_content %}
+
+    <div class="container mx-auto w-50 h-50">
+        <h3 style="color: red">Delete Device</h3>
+
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            <div style="text-align: center">
+                <input type="submit" class="btn-danger" value="Confirm"/>
+                <input type="submit" class="btn-primary" name="cancel" value="Cancel"/>
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock page_content %}
+

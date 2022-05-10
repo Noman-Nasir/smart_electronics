@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    <title>Home</title>
+{% endblock page_title %}
+
+
+{% block page_header %}
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide w-25 h-25 mx-auto" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+
+                <img src="{{ active_device.image.url }}" class="d-block w-100"
+                     alt="{{ active_device.name }}">
+
+                <div class="carousel-caption d-none d-md-block">
+                    <h3 style="color: red">{{ active_device.name }}</h3>
+                    <p style="color: red">{{ active_device.description }}</p>
+                </div>
+
+            </div>
+
+            {% for item in latest_items %}
+                <div class="carousel-item">
+
+                    <img src="{{ device.image.url }}" class="d-block w-100" alt="{{ device.name }}">
+
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 style="color: red">{{ device.name }}</h3>
+                        <p style="color: red">{{ device.description }}</p>
+                    </div>
+
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock page_header %}

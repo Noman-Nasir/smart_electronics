@@ -1,0 +1,6 @@
+.DS_Store
+.idea/
+device.log
+media
+*/.env
+*.pyc
